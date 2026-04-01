@@ -1,7 +1,11 @@
 using Autofac;
 using Autofac.Integration.WebApi;
+using Example.Core.Application.Organizations.Abstractions;
+using Example.Core.Application.Projects.Abstractions;
 using Example.Core.Application.Users.Abstractions;
 using Example.Core.Application.Users.Create;
+using Example.Infrastructure.Memory.Organizations;
+using Example.Infrastructure.Memory.Projects;
 using Example.Infrastructure.Memory.Users;
 using MediatR.Extensions.Autofac.DependencyInjection;
 using MediatR.Extensions.Autofac.DependencyInjection.Builder;
@@ -43,6 +47,14 @@ namespace Example.Presentation.Http
 
         private static void RegisterRepositories(ContainerBuilder builder)
         {
+            builder.RegisterType<OrganizationsRepository>()
+                .As<IOrganizationsRepository>()
+                .SingleInstance();
+
+            builder.RegisterType<ProjectsRepository>()
+                .As<IProjectsRepository>()
+                .SingleInstance();
+
             builder.RegisterType<UsersRepository>()
                 .As<IUsersRepository>()
                 .SingleInstance();

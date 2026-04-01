@@ -1,5 +1,6 @@
 using Example.Core.Application.Users.Abstractions;
 using Example.Core.Domain.Users;
+using Example.Core.Domain.Users.Enums;
 
 using System;
 using System.Collections.Concurrent;
@@ -18,6 +19,37 @@ namespace Example.Infrastructure.Memory.Users
         {
             _users = new ConcurrentDictionary<int, User>();
             _currentId = 0;
+        }
+
+        public IReadOnlyCollection<User> Search(
+            string firstName,
+            string lastName,
+            string email,
+            int? organizationId,
+            EmploymentType? employmentType)
+        {
+            var normalizedFirstName = NormalizeFilter(firstName);
+            var normalizedLastName = NormalizeFilter(lastName);
+            var normalizedEmail = NormalizeFilter(email);
+
+            return _users.Values
+                .Where(user => Matches(user.FirstName, normalizedFirstName))
+                .Where(user => Matches(user.LastName, normalizedLastName))
+                .Where(user => Matches(user.Email, normalizedEmail))
+                .Where(user => !organizationId.HasValue || user.OrganizationId == organizationId.Value)
+                .Where(user => !employmentType.HasValue || user.EmploymentType == employmentType.Value)
+                .OrderBy(user => user.Id)
+                .ToArray();
+        }
+
+        public User GetById(int id)
+        {
+            if (!_users.TryGetValue(id, out var user))
+            {
+                throw new KeyNotFoundException($"User with id {id} was not found.");
+            }
+
+            return user;
         }
 
         public void Add(User user)
@@ -39,16 +71,6 @@ namespace Example.Infrastructure.Memory.Users
             }
         }
 
-        public User GetById(int id)
-        {
-            if (!_users.TryGetValue(id, out var user))
-            {
-                throw new KeyNotFoundException($"User with id {id} was not found.");
-            }
-
-            return user;
-        }
-
         public void Update(User user)
         {
             if (user == null)
@@ -67,20 +89,6 @@ namespace Example.Infrastructure.Memory.Users
             }
 
             _users[user.Id] = user;
-        }
-
-        public IReadOnlyCollection<User> Search(string firstName, string lastName, string email)
-        {
-            var normalizedFirstName = NormalizeFilter(firstName);
-            var normalizedLastName = NormalizeFilter(lastName);
-            var normalizedEmail = NormalizeFilter(email);
-
-            return _users.Values
-                .Where(user => Matches(user.FirstName, normalizedFirstName))
-                .Where(user => Matches(user.LastName, normalizedLastName))
-                .Where(user => Matches(user.Email, normalizedEmail))
-                .OrderBy(user => user.Id)
-                .ToArray();
         }
 
         public void Delete(User user)

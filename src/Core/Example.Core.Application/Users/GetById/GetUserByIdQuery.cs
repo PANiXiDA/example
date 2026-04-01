@@ -2,7 +2,7 @@ using MediatR;
 
 namespace Example.Core.Application.Users.GetById
 {
-    public sealed class GetUserByIdQuery : IRequest<UserReadModel>
+    public sealed class GetUserByIdQuery : IRequest<GetUserByIdReadModel>
     {
         public GetUserByIdQuery(int id)
         {

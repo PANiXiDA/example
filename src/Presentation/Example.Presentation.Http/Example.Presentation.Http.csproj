@@ -165,18 +165,56 @@
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Features\Organizations\OrganizationTypeParser.cs" />
+    <Compile Include="Features\Organizations\Create\CreateOrganizationMapper.cs" />
+    <Compile Include="Features\Organizations\Create\CreateOrganizationRequest.cs" />
+    <Compile Include="Features\Organizations\Create\CreateOrganizationResponse.cs" />
+    <Compile Include="Features\Organizations\Delete\DeleteOrganizationMapper.cs" />
+    <Compile Include="Features\Organizations\GetById\GetOrganizationByIdMapper.cs" />
+    <Compile Include="Features\Organizations\GetById\GetOrganizationByIdResponse.cs" />
+    <Compile Include="Features\Organizations\OrganizationsController.cs" />
+    <Compile Include="Features\Organizations\Search\SearchOrganizationsItemResponse.cs" />
+    <Compile Include="Features\Organizations\Search\SearchOrganizationsMapper.cs" />
+    <Compile Include="Features\Organizations\Search\SearchOrganizationsRequest.cs" />
+    <Compile Include="Features\Organizations\Search\SearchOrganizationsResponse.cs" />
+    <Compile Include="Features\Organizations\Update\UpdateOrganizationMapper.cs" />
+    <Compile Include="Features\Organizations\Update\UpdateOrganizationRequest.cs" />
+    <Compile Include="Features\Projects\Create\CreateProjectMapper.cs" />
+    <Compile Include="Features\Projects\Create\CreateProjectRequest.cs" />
+    <Compile Include="Features\Projects\Create\CreateProjectResponse.cs" />
+    <Compile Include="Features\Projects\Create\CreateProjectSettingsRequest.cs" />
+    <Compile Include="Features\Projects\Delete\DeleteProjectMapper.cs" />
+    <Compile Include="Features\Projects\GetById\GetProjectByIdMapper.cs" />
+    <Compile Include="Features\Projects\GetById\GetProjectByIdResponse.cs" />
+    <Compile Include="Features\Projects\GetById\GetProjectSettingsResponse.cs" />
+    <Compile Include="Features\Projects\ProjectsController.cs" />
+    <Compile Include="Features\Projects\Search\SearchProjectsItemResponse.cs" />
+    <Compile Include="Features\Projects\Search\SearchProjectsMapper.cs" />
+    <Compile Include="Features\Projects\Search\SearchProjectsRequest.cs" />
+    <Compile Include="Features\Projects\Search\SearchProjectsResponse.cs" />
+    <Compile Include="Features\Projects\Update\UpdateProjectMapper.cs" />
+    <Compile Include="Features\Projects\Update\UpdateProjectRequest.cs" />
+    <Compile Include="Features\Projects\Update\UpdateProjectSettingsRequest.cs" />
+    <Compile Include="Features\Users\ContactMethodTypeParser.cs" />
+    <Compile Include="Features\Users\ContactMethods\Add\AddContactMethodMapper.cs" />
+    <Compile Include="Features\Users\ContactMethods\Add\AddContactMethodRequest.cs" />
+    <Compile Include="Features\Users\ContactMethods\Add\AddContactMethodResponse.cs" />
+    <Compile Include="Features\Users\ContactMethods\Delete\DeleteContactMethodMapper.cs" />
+    <Compile Include="Features\Users\ContactMethods\Update\UpdateContactMethodMapper.cs" />
+    <Compile Include="Features\Users\ContactMethods\Update\UpdateContactMethodRequest.cs" />
+    <Compile Include="Features\Users\EmploymentTypeParser.cs" />
     <Compile Include="Features\Users\Create\CreateUserMapper.cs" />
     <Compile Include="Features\Users\Create\CreateUserRequest.cs" />
     <Compile Include="Features\Users\Create\CreateUserResponse.cs" />
     <Compile Include="Features\Users\Delete\DeleteUserMapper.cs" />
-    <Compile Include="Features\Users\GetById\GetUserByIdMapper.cs" />
-    <Compile Include="Features\Users\GetById\GetUserByIdResponse.cs" />
-    <Compile Include="Features\Users\Search\SearchUsersItemResponse.cs" />
-    <Compile Include="Features\Users\Search\SearchUsersMapper.cs" />
-    <Compile Include="Features\Users\Search\SearchUsersRequest.cs" />
-    <Compile Include="Features\Users\Search\SearchUsersResponse.cs" />
-    <Compile Include="Features\Users\Update\UpdateUserMapper.cs" />
-    <Compile Include="Features\Users\Update\UpdateUserRequest.cs" />
+    <Compile Include="Features\Users\GetById\GetUserByIdDetailsMapper.cs" />
+    <Compile Include="Features\Users\GetById\GetUserByIdDetailsResponse.cs" />
+    <Compile Include="Features\Users\Search\SearchUsersFiltersRequest.cs" />
+    <Compile Include="Features\Users\Search\SearchUsersResultItemResponse.cs" />
+    <Compile Include="Features\Users\Search\SearchUsersResultMapper.cs" />
+    <Compile Include="Features\Users\Search\SearchUsersResultResponse.cs" />
+    <Compile Include="Features\Users\Update\UpdateUserDetailsMapper.cs" />
+    <Compile Include="Features\Users\Update\UpdateUserDetailsRequest.cs" />
     <Compile Include="Features\Users\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -196,6 +234,10 @@
     <ProjectReference Include="..\..\Core\Example.Core.Application\Example.Core.Application.csproj">
       <Project>{5cc1d758-fbc7-45a8-b4ad-0a396d0a6739}</Project>
       <Name>Example.Core.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Example.Core.Domain\Example.Core.Domain.csproj">
+      <Project>{79d8efda-0777-4282-b3a4-1643e1e759a3}</Project>
+      <Name>Example.Core.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Example.Infrastructure.Memory\Example.Infrastructure.Memory.csproj">
       <Project>{379B4DB6-8A77-4C05-9493-C5B564B07EE7}</Project>

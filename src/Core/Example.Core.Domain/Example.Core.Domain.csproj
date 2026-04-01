@@ -42,6 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Organizations\Enums\OrganizationType.cs" />
+    <Compile Include="Organizations\Organization.cs" />
+    <Compile Include="Projects\Entities\ProjectSettings.cs" />
+    <Compile Include="Projects\Project.cs" />
+    <Compile Include="Users\Enums\ContactMethodType.cs" />
+    <Compile Include="Users\Enums\EmploymentType.cs" />
+    <Compile Include="Users\Entities\ContactMethod.cs" />
+    <Compile Include="Users\Entities\EmploymentProfile.cs" />
     <Compile Include="Users\User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

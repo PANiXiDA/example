@@ -10,23 +10,38 @@ namespace Example.Core.Application.Users.Create
 {
     public sealed class CreateUserHandler : IRequestHandler<CreateUserCommand, int>
     {
-        private readonly IUsersRepository _userRepository;
+        private readonly IUsersRepository _usersRepository;
+        private readonly IMediator _mediator;
 
-        public CreateUserHandler(IUsersRepository userRepository)
+        public CreateUserHandler(
+            IUsersRepository usersRepository,
+            IMediator mediator)
         {
-            _userRepository = userRepository;
+            _usersRepository = usersRepository;
+            _mediator = mediator;
         }
 
-        public Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
+            await OrganizationReferenceValidation.EnsureExists(
+                _mediator,
+                request.OrganizationId,
+                cancellationToken);
+
             var user = User.Create(
                 request.FirstName,
                 request.LastName,
-                request.Email);
+                request.Email,
+                request.OrganizationId,
+                request.EmploymentType,
+                request.PlannedWeeklyHours,
+                request.PositionTitle,
+                request.HireDate,
+                request.ProbationEndDate);
 
-            _userRepository.Add(user);
+            _usersRepository.Add(user);
 
-            return Task.FromResult(user.Id);
+            return user.Id;
         }
     }
 }

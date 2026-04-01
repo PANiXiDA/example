@@ -1,4 +1,4 @@
-﻿namespace Example.Presentation.Http.Features.Users.Create
+namespace Example.Presentation.Http.Features.Users.Create
 {
     public sealed class CreateUserResponse
     {

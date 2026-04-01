@@ -1,4 +1,8 @@
+using Example.Core.Application.Users.ContactMethods.Add;
 using Example.Core.Application.Users.GetById;
+using Example.Presentation.Http.Features.Users.ContactMethods.Add;
+using Example.Presentation.Http.Features.Users.ContactMethods.Delete;
+using Example.Presentation.Http.Features.Users.ContactMethods.Update;
 using Example.Presentation.Http.Features.Users.Create;
 using Example.Presentation.Http.Features.Users.Delete;
 using Example.Presentation.Http.Features.Users.GetById;
@@ -28,26 +32,33 @@ namespace Example.Presentation.Http.Features.Users
 
         [HttpGet]
         [Route("")]
-        [ResponseType(typeof(SearchUsersResponse))]
-        public async Task<IHttpActionResult> Search([FromUri] SearchUsersRequest request)
+        [ResponseType(typeof(SearchUsersResultResponse))]
+        public async Task<IHttpActionResult> Search([FromUri] SearchUsersFiltersRequest request)
         {
-            var safeRequest = request ?? new SearchUsersRequest();
+            var safeRequest = request ?? new SearchUsersFiltersRequest();
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var query = SearchUsersMapper.ToQuery(safeRequest);
-            var users = await _mediator.Send(query);
-            var response = SearchUsersMapper.ToResponse(users);
+            try
+            {
+                var query = SearchUsersResultMapper.ToQuery(safeRequest);
+                var users = await _mediator.Send(query);
+                var response = SearchUsersResultMapper.ToResponse(users);
 
-            return Ok(response);
+                return Ok(response);
+            }
+            catch (ArgumentException exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
 
         [HttpGet]
         [Route("{id:int}")]
-        [ResponseType(typeof(GetUserByIdResponse))]
+        [ResponseType(typeof(GetUserByIdDetailsResponse))]
         public async Task<IHttpActionResult> GetById(int id)
         {
             if (id <= 0)
@@ -59,7 +70,7 @@ namespace Example.Presentation.Http.Features.Users
             {
                 var query = new GetUserByIdQuery(id);
                 var user = await _mediator.Send(query);
-                var response = GetUserByIdMapper.ToResponse(user);
+                var response = GetUserByIdDetailsMapper.ToResponse(user);
 
                 return Ok(response);
             }
@@ -100,7 +111,7 @@ namespace Example.Presentation.Http.Features.Users
 
         [HttpPut]
         [Route("{id:int}")]
-        public async Task<IHttpActionResult> Update(int id, [FromBody] UpdateUserRequest request)
+        public async Task<IHttpActionResult> Update(int id, [FromBody] UpdateUserDetailsRequest request)
         {
             if (id <= 0)
             {
@@ -119,7 +130,7 @@ namespace Example.Presentation.Http.Features.Users
 
             try
             {
-                var command = UpdateUserMapper.ToCommand(id, request);
+                var command = UpdateUserDetailsMapper.ToCommand(id, request);
 
                 await _mediator.Send(command);
 
@@ -147,6 +158,117 @@ namespace Example.Presentation.Http.Features.Users
             try
             {
                 var command = DeleteUserMapper.ToCommand(id);
+
+                await _mediator.Send(command);
+
+                return StatusCode(HttpStatusCode.NoContent);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPost]
+        [Route("{id:int}/contact-methods")]
+        [ResponseType(typeof(AddContactMethodResponse))]
+        public async Task<IHttpActionResult> AddContactMethod(int id, [FromBody] AddContactMethodRequest request)
+        {
+            if (id <= 0)
+            {
+                return BadRequest("Id must be greater than zero.");
+            }
+
+            if (request == null)
+            {
+                return BadRequest("Request body is required.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var command = AddContactMethodMapper.ToCommand(id, request);
+                var contactMethodId = await _mediator.Send(command);
+                var response = AddContactMethodMapper.ToResponse(contactMethodId);
+
+                return Content(HttpStatusCode.Created, response);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+            catch (ArgumentException exception)
+            {
+                return BadRequest(exception.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("{id:int}/contact-methods/{contactMethodId:int}")]
+        public async Task<IHttpActionResult> UpdateContactMethod(
+            int id,
+            int contactMethodId,
+            [FromBody] UpdateContactMethodRequest request)
+        {
+            if (id <= 0)
+            {
+                return BadRequest("Id must be greater than zero.");
+            }
+
+            if (contactMethodId <= 0)
+            {
+                return BadRequest("Contact method id must be greater than zero.");
+            }
+
+            if (request == null)
+            {
+                return BadRequest("Request body is required.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var command = UpdateContactMethodMapper.ToCommand(id, contactMethodId, request);
+
+                await _mediator.Send(command);
+
+                return StatusCode(HttpStatusCode.NoContent);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+            catch (ArgumentException exception)
+            {
+                return BadRequest(exception.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("{id:int}/contact-methods/{contactMethodId:int}")]
+        public async Task<IHttpActionResult> DeleteContactMethod(int id, int contactMethodId)
+        {
+            if (id <= 0)
+            {
+                return BadRequest("Id must be greater than zero.");
+            }
+
+            if (contactMethodId <= 0)
+            {
+                return BadRequest("Contact method id must be greater than zero.");
+            }
+
+            try
+            {
+                var command = DeleteContactMethodMapper.ToCommand(id, contactMethodId);
 
                 await _mediator.Send(command);
 

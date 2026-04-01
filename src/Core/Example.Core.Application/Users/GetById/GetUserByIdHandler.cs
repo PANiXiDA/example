@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Example.Core.Application.Users.GetById
 {
-    public sealed class GetUserByIdHandler : IRequestHandler<GetUserByIdQuery, UserReadModel>
+    public sealed class GetUserByIdHandler : IRequestHandler<GetUserByIdQuery, GetUserByIdReadModel>
     {
         private readonly IUsersRepository _usersRepository;
 
@@ -16,10 +16,10 @@ namespace Example.Core.Application.Users.GetById
             _usersRepository = usersRepository;
         }
 
-        public Task<UserReadModel> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
+        public Task<GetUserByIdReadModel> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
             var user = _usersRepository.GetById(request.Id);
-            var readModel = UserReadModelMapper.ToReadModel(user);
+            var readModel = GetUserByIdReadModelMapper.ToReadModel(user);
 
             return Task.FromResult(readModel);
         }

@@ -1,4 +1,5 @@
-﻿using Example.Core.Application.Users.Create;
+using Example.Core.Application.Users.Create;
+using Example.Presentation.Http.Features.Users;
 
 namespace Example.Presentation.Http.Features.Users.Create
 {
@@ -9,7 +10,13 @@ namespace Example.Presentation.Http.Features.Users.Create
             return new CreateUserCommand(
                 request.FirstName,
                 request.LastName,
-                request.Email);
+                request.Email,
+                request.OrganizationId,
+                EmploymentTypeParser.Parse(request.EmploymentType),
+                request.PlannedWeeklyHours,
+                request.EmploymentProfile.PositionTitle,
+                request.EmploymentProfile.HireDate,
+                request.EmploymentProfile.ProbationEndDate);
         }
 
         public static CreateUserResponse ToResponse(int id)
