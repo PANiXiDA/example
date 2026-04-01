@@ -18,7 +18,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkforceManagement.Core.Do
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkforceManagement.Infrastructure.Memory", "src\Infrastructure\WorkforceManagement.Infrastructure.Memory\WorkforceManagement.Infrastructure.Memory.csproj", "{379B4DB6-8A77-4C05-9493-C5B564B07EE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkforceManagement.Presentation.Http", "..\Example\src\Presentation\WorkforceManagement.Presentation.Http\WorkforceManagement.Presentation.Http.csproj", "{B0914959-C4A3-443E-9C63-B71461458FA3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkforceManagement.Core.Domain.UnitTests", "tests\WorkforceManagement.Core.Domain.UnitTests\WorkforceManagement.Core.Domain.UnitTests.csproj", "{E4C986E5-55A5-4A3D-B88C-0D675D7A47E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkforceManagement.Presentation.Http", "..\example\src\Presentation\WorkforceManagement.Presentation.Http\WorkforceManagement.Presentation.Http.csproj", "{B0914959-C4A3-443E-9C63-B71461458FA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +40,10 @@ Global
 		{379B4DB6-8A77-4C05-9493-C5B564B07EE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{379B4DB6-8A77-4C05-9493-C5B564B07EE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{379B4DB6-8A77-4C05-9493-C5B564B07EE7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{551C84A3-4A71-43F0-812C-6BB9CAB51C40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{551C84A3-4A71-43F0-812C-6BB9CAB51C40}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{551C84A3-4A71-43F0-812C-6BB9CAB51C40}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{551C84A3-4A71-43F0-812C-6BB9CAB51C40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4C986E5-55A5-4A3D-B88C-0D675D7A47E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4C986E5-55A5-4A3D-B88C-0D675D7A47E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4C986E5-55A5-4A3D-B88C-0D675D7A47E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4C986E5-55A5-4A3D-B88C-0D675D7A47E3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B0914959-C4A3-443E-9C63-B71461458FA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B0914959-C4A3-443E-9C63-B71461458FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0914959-C4A3-443E-9C63-B71461458FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,7 +59,10 @@ Global
 		{5CC1D758-FBC7-45A8-B4AD-0A396D0A6739} = {1B554852-6EEA-4D1D-A740-2E41631B8896}
 		{79D8EFDA-0777-4282-B3A4-1643E1E759A3} = {1B554852-6EEA-4D1D-A740-2E41631B8896}
 		{379B4DB6-8A77-4C05-9493-C5B564B07EE7} = {69E3E651-95B5-4CE7-928E-20D78CCEB2F4}
-		{551C84A3-4A71-43F0-812C-6BB9CAB51C40} = {AC6E72E6-6715-4E07-B825-F2B1AD3B9D29}
+		{E4C986E5-55A5-4A3D-B88C-0D675D7A47E3} = {4C0D819C-F03A-4869-999D-8B8298D27F81}
 		{B0914959-C4A3-443E-9C63-B71461458FA3} = {AC6E72E6-6715-4E07-B825-F2B1AD3B9D29}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {65B2DCFD-D7A5-4490-BBB2-0254C56E6F24}
 	EndGlobalSection
 EndGlobal
