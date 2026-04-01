@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.4.11626.88 stable
+VisualStudioVersion = 18.4.11626.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{65DF555A-17CF-49AB-9E1B-A9E5714D63AA}"
 EndProject
@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkforceManagement.Infrast
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkforceManagement.Core.Domain.UnitTests", "tests\WorkforceManagement.Core.Domain.UnitTests\WorkforceManagement.Core.Domain.UnitTests.csproj", "{E4C986E5-55A5-4A3D-B88C-0D675D7A47E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkforceManagement.Presentation.Http", "..\example\src\Presentation\WorkforceManagement.Presentation.Http\WorkforceManagement.Presentation.Http.csproj", "{B0914959-C4A3-443E-9C63-B71461458FA3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkforceManagement.Presentation.Http", "..\..\..\Repository\example\src\Presentation\WorkforceManagement.Presentation.Http\WorkforceManagement.Presentation.Http.csproj", "{B0914959-C4A3-443E-9C63-B71461458FA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
